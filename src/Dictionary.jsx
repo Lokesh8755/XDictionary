@@ -1,81 +1,55 @@
 import React, { useState } from 'react';
 
-const Dictionary = () => {
-    // Dictionary data
-    const dictionary = [
-        { word: "React", meaning: "A JavaScript library for building user interfaces." },
-        { word: "Component", meaning: "A reusable building block in React." },
-        { word: "State", meaning: "An object that stores data for a component." }
-    ];
+const XDictionary = () => {
+  // Initialize dictionary with the required words
+  const initialDictionary = [
+    { word: "React", meaning: "A JavaScript library for building user interfaces." },
+    { word: "Component", meaning: "A reusable building block in React." },
+    { word: "State", meaning: "An object that stores data for a component." }
+  ];
 
-    // States for search input and result
-    const [searchTerm, setSearchTerm] = useState('');
-    const [searchResult, setSearchResult] = useState('');
-    const [hasSearched, setHasSearched] = useState(false);
+  // State for the dictionary and search term
+  const [dictionary] = useState(initialDictionary);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResult, setSearchResult] = useState('');
 
-    // Handle search function
-    const handleSearch = () => {
-        setHasSearched(true);
-        
-        if (!searchTerm.trim()) {
-            setSearchResult('');
-            return;
-        }
-
-        const foundWord = dictionary.find(
-            item => item.word.toLowerCase() === searchTerm.toLowerCase()
-        );
-
-        if (foundWord) {
-            setSearchResult(foundWord.meaning);
-        } else {
-            setSearchResult("Word not found in the dictionary.");
-        }
-    };
-
-    return (
-        <div style={{ 
-            maxWidth: '500px', 
-            margin: '0 auto', 
-            padding: '20px',
-            textAlign: 'center' 
-        }}>
-            <h1>Dictionary</h1>
-            
-            <div style={{ marginBottom: '20px' }}>
-                <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search for a word..."
-                    style={{
-                        padding: '8px',
-                        marginRight: '10px',
-                        width: '200px'
-                    }}
-                />
-                <button
-                    onClick={handleSearch}
-                    style={{
-                        padding: '8px 16px',
-                        backgroundColor: '#007bff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                    }}
-                >
-                    Search
-                </button>
-            </div>
-
-            {hasSearched && searchResult && (
-                <div>
-                    {searchResult}
-                </div>
-            )}
-        </div>
+  // Handle search functionality
+  const handleSearch = () => {
+    // Find the word in dictionary (case-insensitive)
+    const result = dictionary.find(
+      entry => entry.word.toLowerCase() === searchTerm.toLowerCase()
     );
+    
+    // Set the search result
+    if (result) {
+      setSearchResult(result.meaning);
+    } else {
+      setSearchResult("Word not found in the dictionary.");
+    }
+  };
+
+  return (
+    <div>
+      <h1 style={{ fontFamily: "serif", fontSize: "32px", marginBottom: "20px" }}>Dictionary App</h1>
+      
+      <div>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{ marginRight: "5px" }}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+
+      {searchResult && (
+        <div>
+          <p style={{ marginTop: "10px", marginBottom: "5px" }}>Definition:</p>
+          <p>{searchResult}</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default Dictionary;
+export default XDictionary;

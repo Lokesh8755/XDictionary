@@ -1,10 +1,10 @@
 import React from 'react'
-import Dictionary from './Dictionary'
+import XDictionary from './Dictionary'
 
 const App = () => {
   return (
     <div>
-      <Dictionary/>
+      <XDictionary/>
     </div>
   )
 }
