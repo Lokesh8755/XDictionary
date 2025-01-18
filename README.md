@@ -3,7 +3,7 @@
 A simple React-based dictionary application that helps users look up word definitions.
 
 ## Demo
-[Live Demo](your-deployed-link)
+[Live Demo](https://x-dictionary-chi-ivory.vercel.app/)
 
 ## Features
 - Search functionality for words
